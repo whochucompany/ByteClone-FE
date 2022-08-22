@@ -6,6 +6,7 @@ import GuestPage from '../pages/GuestPage'
 import MemberPage from '../pages/MemberPage'
 import DetailPage from '../pages/DetailPage'
 import Createpage from '../pages/Createpage'
+import SignUpPage from '../pages/SignUpPage';
 
 
 
@@ -20,6 +21,7 @@ import Createpage from '../pages/Createpage'
                 <Route path='/tag/deepbyte' element={<MemberPage/>}/>
                 <Route path='/tag/:postId' element={<DetailPage/>}/>
                 <Route path='/create' element={<Createpage/>}/>
+                <Route path='/signup' element={<SignUpPage/>}/>
             </Routes>
         </BrowserRouter>
     );

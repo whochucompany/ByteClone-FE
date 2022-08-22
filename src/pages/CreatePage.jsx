@@ -1,6 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
 
-const MainBanner = () => {
+const Create = () => {
     return (
         <div>
             
@@ -8,4 +9,4 @@ const MainBanner = () => {
     );
 };
 
-export default MainBanner;
+export default Create;
