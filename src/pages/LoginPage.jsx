@@ -11,8 +11,8 @@ const LoginPage = () => {
             <Header/>
                 <Layout>
                     <SignIn/>
-                    <Footer/>
                 </Layout>
+            <Footer/>
         </div>
     );
 };

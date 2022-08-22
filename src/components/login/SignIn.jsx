@@ -61,7 +61,7 @@ const SignIn = () => {
                 placeholder='비밀번호를 입력하세요.'
             />
             <StSignInButton
-                onClick={sendLoginInformation}
+                /* onClick={sendLoginInformation} */
             >이메일로 로그인하기</StSignInButton>
 
             <StUnderbarBox/>
