@@ -1,8 +1,10 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-
+import axios from 'axios';
 const SignIn = () => {
+
+    
 
     const [email, setEmail] = useState("") 
     const [password, setPassword] = useState("") 
@@ -13,7 +15,7 @@ const SignIn = () => {
     const onChangeHandler2 = (e) => {
         setPassword(e.target.value);
     }
-
+/* 
     const sendLoginInformation = async (e) => {
         e.preventDefault();
         
@@ -37,7 +39,7 @@ const SignIn = () => {
         }
         // axios.defaults.headers.common["Authorization"] = `Bearer ${response['token']}`;
     }    
-
+ */
 
     return (
         <StSignInWrap>

@@ -13,8 +13,12 @@ const Layout = ({children}) => {
 export default Layout;
 
 const StLayout = styled.div`
-  width: 1400px;
-  min-width: 300px;
+  max-width: 1400px;
+  min-width: 500px;
   margin: 0 auto;
-  padding-top: 100px;
+  @media screen and (max-width: 500px){
+        width: 100%;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
 `

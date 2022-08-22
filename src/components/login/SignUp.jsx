@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 import axios from 'axios';
 
@@ -10,6 +10,8 @@ const SignUp = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
+
+    const navigate = useNavigate ()
 
     var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+/;
     // BE에서 유효성검사 해줌? 여부에 따라 위 코드 삭제
