@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const SignIn = () => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("") 
     const [password, setPassword] = useState("") 
@@ -17,25 +20,27 @@ const SignIn = () => {
     const sendLoginInformation = async (e) => {
         e.preventDefault();
         
-       
-        if (exptext.test(email) === false) {
-            
-            console.log (exptext.test(email))
+    
+        const response = await axios.post("http://54.180.106.214/user/login",{
+            email: email, 
+            password: password,
         }
-        try{
-            const response = await axios.post("login",{ // 로그인
-                email: email, 
-                password: password,
-            }
-            ,{withCredentials:true})
-            localStorage.setItem("Authorization",response.data.data.Authorization)
-            localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
+        ,{withCredentials:true})
+        console.log("response",response.headers)
+        localStorage.setItem("Authorization",response.headers.authorization)
+        localStorage.setItem("View","member")
+        localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
 
-        } catch(error){
-            alert("아이디와 비밀번호를 확인해주세요")
-            console.log(error)
+        if ( email === "" && password ==="") {
+            alert("아이디와 비밀번호를 입력해주세요.")
+        }    
+        if (response.result === false) {
+            alert("아이디와 비밀번호가 맞는지 확인해주세요.")
         }
-        // axios.defaults.headers.common["Authorization"] = `Bearer ${response['token']}`;
+        else{
+            alert("로그인 성공!")
+            navigate("/")
+        }
     }    
 
 
@@ -53,16 +58,17 @@ const SignIn = () => {
                 onChange = {onChangeHandler2}
                 placeholder='비밀번호를 입력하세요.'
             />
-            <StSignInButton>이메일로 로그인하기</StSignInButton>
+            <StSignInButton
+                onClick={sendLoginInformation}
+            >이메일로 로그인하기</StSignInButton>
 
             <StUnderbarBox/>
 
-            <STSignUpBox>아직 가입하지 않았나요? <NavLink activeclassame="signUpLink" to="/signup">가입하기</NavLink>
-
+            <STSignUpBox>아직 가입하지 않았나요? <span><NavLink to="/signup">가입하기</NavLink>
+            </span>
             </STSignUpBox>
             <StSignInFooter>Powered by <strong>Bluedot</strong>, 
             Partner of <strong>Mediasphere</strong>
-            
             </StSignInFooter>
         </StSignInWrap>
     );
@@ -79,6 +85,7 @@ const StSignInWrap = styled.div`
     max-width : 300px;
     width : 300px;
 
+    margin-top : 100px;
     margin-left : auto;
     margin-right : auto;
 
@@ -92,6 +99,7 @@ const StSignInHeader = styled.div`
     
 
     color : #000C2D;
+
 
     margin-botton : 10px;
 `
@@ -167,6 +175,12 @@ const STSignUpBox = styled.span`
     
         font-size : 13px;
     }
+    span>a{
+        color : black;
+        text-decoration : none;
+        font-weight : bold;
+    }
+    
     
 
 `
