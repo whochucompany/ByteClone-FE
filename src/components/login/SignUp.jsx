@@ -12,6 +12,7 @@ const SignUp = () => {
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
 
+
     const [doubleCheck, setDoubleCheck] = useState(false)
 
 

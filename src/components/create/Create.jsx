@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { useForm } from "react-hook-form";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import axios from 'axios';
 const Create = () => {
     const [files, setFiles] = useState(''); // 파일 프리뷰 state 작성 
     const [category, setcategory] = useState('') // 카테고리
@@ -54,16 +54,21 @@ const Create = () => {
         reader.readAsDataURL(files)
     }
 
-    const onSubmit = () =>{
+    const onSubmit = async() =>{
         const values = getValues ();
         values.content = content.current;
         values.category = `${category}`
         values.view = `${view}`
         values.img = img
         console.log(values)
+        
+        await axios
+        .post(
+            'url',values
+        )
     }
     return (
-        <form onSubmit={handleSubmit(onSubmit, watch)} id="form">
+        <Createform onSubmit={handleSubmit(onSubmit, watch)} id="form">
             <div>
                 <h2>기사 타이틀</h2>
                 <input type="text" id='title' name='title' placeholder='기사 제목을 입력해주시요.'
@@ -92,7 +97,7 @@ const Create = () => {
                 <CKEditor
                     id = 'content'
                     editor={ClassicEditor}
-                    data='<p>Hello from CKEditor 5!</p>'
+                    data='<p>기사를 입력해주세요.</p>'
                     onChange={(event, editor) => {
                         content.current = editor.getData();
                     }}
@@ -107,7 +112,7 @@ const Create = () => {
                     accept='image/*'
                     onChange={onLoadFile}
                 />
-                <p>권장 이미지 크기 : 600px * 600px</p>
+                <p>권장 이미지 크기 : 1400px * 400px</p>
                 <ImgPreview id='imgPreview'></ImgPreview>
                
             </div>
@@ -129,18 +134,55 @@ const Create = () => {
             type='button'
             onClick={onSubmit}
             >게시하기</button>
-        </form>
+        </Createform>
     );
 };
 
 export default Create;
 
-
+const Createform = styled.form`
+    width: 1000px;
+    margin: 0 auto;
+    div:nth-of-type(3){
+        .ck-content{
+            height: 500px;
+        }
+    }
+    div:nth-of-type(4){
+        p{
+            margin:20px 0 10px;
+            color:#aaa;
+        }
+    }
+    div{
+        h2{
+            font-size: ${(props) => props.theme.fontsizes.subtitle2};
+            margin: 50px 0 30px;
+        }
+    }
+    
+    button{
+        margin-top:50px;
+        padding: 10px 15px;
+        border-radius: 6px;
+        background-color: #04a6d7;
+        border: none;
+        color: #fff;
+        transition: all .3s;
+        font-size: 16px;
+        line-height: 24px;
+        &:hover{
+            background-color:  ${(props) => props.theme.lightmode.color_dark};
+            cursor: pointer;
+        }
+    }
+    padding: 50px 0;
+`
 
 
 const ImgPreview = styled.div`
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: 400px;
     background-color:#fff8ff;
     border-radius: 20px;
     @media screen and (max-width: 600px){
@@ -156,9 +198,9 @@ const CategoryChecked = styled.label`
     }
     span {
         padding: 10px 15px;
-        border-radius: 20px;
+        border-radius: 6px;
         background-color:#fff ;
-        border: 1px solid #EEF1F0;
+        border: 1px solid #E5E5E5;
         margin: 0 5px;
         transition: all .3s;
     }
