@@ -1,12 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import post from "../modules/post"
-// import comment from "../modules/comment"
-// import user from "../modules/user"
-// import like from "../modules/like";
-// import subComment from "../modules/subComment";
+import post from '../modules/post'
+import comment from '../modules/comment'
+import login from '../modules/login'
 
     const store = configureStore({
-    // reducer: { post, comment, like, subComment, user }
+        reducer: { post, comment, login }
     });
 
     export default store;
