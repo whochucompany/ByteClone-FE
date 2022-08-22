@@ -1,9 +1,6 @@
 import React from 'react';
 
-const post = () => {
-    
-
-
+const CommentView = () => {
     return (
         <div>
             
@@ -11,4 +8,4 @@ const post = () => {
     );
 };
 
-export default post;
+export default CommentView;

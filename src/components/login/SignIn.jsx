@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
+
+
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -16,7 +18,7 @@ const SignIn = () => {
     const onChangeHandler2 = (e) => {
         setPassword(e.target.value);
     }
-
+/* 
     const sendLoginInformation = async (e) => {
         e.preventDefault();
         
@@ -42,7 +44,7 @@ const SignIn = () => {
             navigate("/")
         }
     }    
-
+ */
 
     return (
         <StSignInWrap>

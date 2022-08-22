@@ -1,19 +1,17 @@
 import React from 'react';
 import Layout from '../components/common/Layout';
 import Header from '../components/common/Header';
-import Footer from '../components/common/Footer';
-import Create from '../components/create/Create'
+import Create from '../components/create/Create';
 
-const Createpage = () => {
+const CreatePage = () => {
     return (
-        <>
-        <Header/>
-            <Layout>
-                <Create/>
-            </Layout>
-        <Footer/>
-        </>
+        <div>
+            <Header/>
+                <Layout>
+                    <Create/>
+                </Layout>
+        </div>
     );
 };
 
-export default Createpage;
+export default CreatePage;
