@@ -13,7 +13,7 @@ const Layout = ({children}) => {
 export default Layout;
 
 const StLayout = styled.div`
-  width: 50%;
+  width: 1400px;
   min-width: 300px;
   margin: 0 auto;
   padding-top: 100px;
