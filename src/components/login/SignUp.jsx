@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 import axios from 'axios';
 
 const SignUp = () => {
+
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [passwordConfirm, setPasswordConfirm] = useState("")
 
-    const navigate = useNavigate ()
 
-    var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+/;
-    // BE에서 유효성검사 해줌? 여부에 따라 위 코드 삭제
+    const [doubleCheck, setDoubleCheck] = useState(false)
+
 
     const onChangeHandler1 = (e) => {
         setEmail(e.target.value);
@@ -33,49 +33,98 @@ const SignUp = () => {
     const sendRequstLogin = async (e) => {
         e.preventDefault();
         
-            const response = await axios.post("user/signup",{ //회원가입
-                username : name,
-                email,
-                password,
-                passwordConfirm
+        var regEmail = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        var regPassword = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
-                // api명세서에서 passwordconfirm 저장 하지 않는다 했는데 그럼 FE에서 유효성 검사?
-                // id 중복검사 BE에서?
-            }
-            ,{withCredentials:true})
-            localStorage.setItem("Authorization",response.data.data.Authorization)
-            localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
-            
-            if (response === true) {
-                alert("login success!")
-                navigate("/")
-            }else{
-                
-            }
-            
-            // setNavigates(true)
-            navigate("/")
-        // } catch(error){
-        //     alert("아이디와 비밀번호를 확인해주세요")
-        //     console.log(error)
-        // }
-        // axios.defaults.headers.common["Authorization"] = `Bearer ${response['token']}`;
+        if (!regEmail.test(email)){
+            alert("이메일 주소에 '@'를 포함해 주세요."+email+"에 '@'가 없습니다.")
+            setEmail("")
+            return
+        }
+        if (doubleCheck===false){
+            alert("이메일 중복검사를 해주시기 바랍니다.")
+            return
+        }
+        
+        if (name.length > 10 && name.length < 1){
+            alert("닉네임은 1자이상 10자이내로 작성해주세요!")
+            console.log({name})
+            return
+        }        
+        if (!regPassword.test(password)){
+            alert("비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함해야 합니다.")
+            setPassword("")
+            setPasswordConfirm("")
+            return
+        }
+        if (password !== passwordConfirm){
+            alert("비밀번호가 같은지 확인해주세요.")
+            setPassword("")
+            setPasswordConfirm("")
+            return
+        }else{
+        const response = await axios.post("http://54.180.106.214/user/signup",{ //회원가입
+            email,
+            username : name,
+            password,
+            passwordConfirm
+        }
+        ,{withCredentials:true})
+        localStorage.setItem("Authorization",response.data.Authorization)
+        // localStorage.setItem("Refresh-Token",response.data.["Refresh-Token"])
+
+        alert("회원가입에 성공하셨습니다!")
+        navigate("/login")
+        }
+    };
+
+    const emailDoubleCheck  = async (e) => {
+    
+        e.preventDefault()
+
+        const response = await axios.get(`/user/emailCheck/${email}`, {
+            body : {
+                 email : email 
+            },
+        }
+        ,{withCredentials:true})
+     
+    if (email === ""){
+        alert("email를 입력해주세요.")
+         return }
+    if (response.result === false) {
+        alert("중복된 아이디 입니다.")
+        setEmail("")
+        return
     }
+     else {
+        alert("사용가능한 아이디 입니다.")
+        setDoubleCheck(true)
+     }
+    };
 
 
     return (
         <StSignUpWrap>
             <StSignUpHeader>회원가입하기</StSignUpHeader>
-            <StSignUpNameBox
-                value={name}
-                onChange={onChangeHandler2}
-                placeholder='이름을 입력하세요.'
-            />
-
+            
+            <StEmailWrap>
             <StSignUpEmailBox
                 value={email}
                 onChange={onChangeHandler1}
                 placeholder='이메일 주소를 입력하세요.'
+            />
+
+            <StDoubleCheckButtom
+                onClick = {emailDoubleCheck}
+            >중복확인</StDoubleCheckButtom>
+
+            </StEmailWrap>
+
+            <StSignUpNameBox
+                value={name}
+                onChange={onChangeHandler2}
+                placeholder='이름을 입력하세요.'
             />
 
             <StSignUpPasswordBox
@@ -85,7 +134,7 @@ const SignUp = () => {
             />
 
             <StSignUpPasswordConfirmBox
-                value={password}
+                value={passwordConfirm}
                 onChange={onChangeHandler4}
                 placeholder='비밀번호를 재입력하세요.'
             />
@@ -96,8 +145,8 @@ const SignUp = () => {
         
             <StUnderbarBox2/>
 
-            <STSignInBox>이미 가입하셨나요? <NavLink activeclassame="signUpLink" to="/">로그인하기</NavLink>
-
+            <STSignInBox>이미 가입하셨나요? <span><NavLink to="/login">로그인하기</NavLink>
+            </span>
             </STSignInBox>
             <StSignUpFooter>Powered by <strong>Bluedot</strong>, 
             Partner of <strong>Mediasphere</strong>
@@ -133,7 +182,12 @@ const StSignUpHeader = styled.div`
 
     color : #000C2D;
 
+    margin-top : 100px;
     margin-botton : 10px;
+`
+
+const StEmailWrap = styled.div`
+    
 `
 
 const StSignUpNameBox = styled.input`
@@ -145,8 +199,8 @@ const StSignUpNameBox = styled.input`
 
     font-size : 13px;
 
-    margin-top : 32px;
-    margin-bottom : 20px;
+    
+    margin-bottom : 10px;
     
     padding : 0px;
     text-align : center;
@@ -157,6 +211,7 @@ const StSignUpNameBox = styled.input`
 
 `
 const StSignUpEmailBox = styled.input`
+    
     min-width: 250px;
     width : 300px;
     height: 40px;
@@ -165,8 +220,8 @@ const StSignUpEmailBox = styled.input`
 
     font-size : 13px;
 
-    
-    margin-bottom : 20px;
+    margin-top : 32px;
+    margin-bottom : 10px;
     padding : 0px;
     text-align : center;
 
@@ -174,6 +229,25 @@ const StSignUpEmailBox = styled.input`
     border : none;
     box-shadow: inset 0 1px rgb(0 0 0 / 8%);
 `
+const StDoubleCheckButtom = styled.button`
+    
+    width :100%;
+    height: 40px;
+
+    background-color : black;
+
+    color : white;
+    font-size : 13px;
+
+
+    margin-bottom : 10px;
+    padding : 0px;
+    text-align : center;
+
+    border-radius : 4px;
+    border : 0px;   
+`
+
 const StSignUpPasswordBox = styled.input`
     min-width: 250px;
     width : 300px;
@@ -183,7 +257,7 @@ const StSignUpPasswordBox = styled.input`
 
     font-size : 13px;
 
-    margin-bottom : 20px;
+    margin-bottom : 10px;
     padding : 0px;
     text-align : center;
 
@@ -201,7 +275,7 @@ const StSignUpPasswordConfirmBox = styled.input`
 
     font-size : 13px;
 
-    margin-bottom : 20px;
+    margin-bottom : 10px;
     padding : 0px;
     text-align : center;
 
@@ -242,6 +316,11 @@ const STSignInBox = styled.span`
         color : #000C2D;
     
         font-size : 13px;
+    }
+    span>a{
+        color : black;
+        text-decoration : none;
+        font-weight : bold;
     }
     
 
