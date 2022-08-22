@@ -1111,7 +1111,7 @@
 
 "@ckeditor/ckeditor5-build-classic@^35.0.1":
   version "35.0.1"
-  resolved "https://registry.npmjs.org/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-35.0.1.tgz"
+  resolved "https://registry.yarnpkg.com/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-35.0.1.tgz#45ec99a835bcb34601a31ccb0e695bebe8914e66"
   integrity sha512-CCkUe0kMfcTP5ctPO8VPC6tJFJsQOGeGi+Dw/YhOy02AYOPU/CVXiyGMVaJoF1V3InfuC/DGV2mx0cpNeP9Wvg==
   dependencies:
     "@ckeditor/ckeditor5-adapter-ckfinder" "^35.0.1"
@@ -2108,57 +2108,12 @@
     "@svgr/plugin-svgo" "^5.5.0"
     loader-utils "^2.0.0"
 
-
 "@szmarczak/http-timer@^1.1.2":
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@szmarczak/http-timer/-/http-timer-1.1.2.tgz#b1665e2c461a2cd92f4c1bbf50d5454de0d4b421"
   integrity sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==
   dependencies:
     defer-to-connect "^1.0.1"
-
-"@syncfusion/ej2-base@~20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-base/-/ej2-base-20.2.43.tgz#d3aa309db55ac67a95197ff5c3341585bfe9e59c"
-  integrity sha512-WQFhwmGCcL2UCZXACeWX5F15y79ttNzvHRDR7iVFp/tJbIn5LLDTzqqcJLP6BNNQ5UseOVh9vWKQNmn6ItqCIQ==
-  dependencies:
-    "@syncfusion/ej2-icons" "~20.2.43"
-
-"@syncfusion/ej2-buttons@~20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-buttons/-/ej2-buttons-20.2.43.tgz#5f22127247c36deb7c1b33edea054c77347b03e0"
-  integrity sha512-GkVwqDb7+xX8iUq19KXIIy5LEWDbD8AdX08Ms8205G+m6UuKi23aM4o3ZyDNuXHrxYYf3oxhzqeLDvp5W/5ymA==
-  dependencies:
-    "@syncfusion/ej2-base" "~20.2.43"
-
-"@syncfusion/ej2-icons@~20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-icons/-/ej2-icons-20.2.43.tgz#8a50d197b4ba596cb6faaf61200648161dea57ad"
-  integrity sha512-jXyZFl6JNK+RRnHL3ov2I4ahDEzGXuAYOgop7UDXCMlazkwVflKvj+L4FwFst/N8xzTaDtBbekty1Z44DY06tw==
-
-"@syncfusion/ej2-popups@20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-popups/-/ej2-popups-20.2.43.tgz#82b338678edb4601c9d74809adb72eafc0981a55"
-  integrity sha512-ol6ikNRGoxtEzN0uEkvrzdtd57x6OF/OIun32+gQLhCz6bg7o/8+H7vAl17AY9CaEKEclehyG0yxLZJSKMWk9w==
-  dependencies:
-    "@syncfusion/ej2-base" "~20.2.43"
-    "@syncfusion/ej2-buttons" "~20.2.43"
-
-"@syncfusion/ej2-react-base@~20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-base/-/ej2-react-base-20.2.43.tgz#e40e00e09aaf4c8050cca289561282bf28a3d6c6"
-  integrity sha512-JXs9130iURbq//+ggNLZKF3s0/dJRFufqAmd7+pGgfz53OqLsu+rvKxfNL6wO0qw7AB41Dz2SZ1r0hMa7g7vJg==
-  dependencies:
-    "@syncfusion/ej2-base" "~20.2.43"
-
-"@syncfusion/ej2-react-popups@^20.2.43":
-  version "20.2.43"
-  resolved "https://registry.yarnpkg.com/@syncfusion/ej2-react-popups/-/ej2-react-popups-20.2.43.tgz#2a5ed6281b37096e8697905a44148744f27fcb50"
-  integrity sha512-o2sgzr4UGXSpws3zTWBvdckhNzkhpbwG5DHDbOQm9FxfVQiUV5NBBGoFohCHtmGoXOX4kdtE7VtWW5DojSJkVw==
-  dependencies:
-    "@syncfusion/ej2-base" "~20.2.43"
-    "@syncfusion/ej2-popups" "20.2.43"
-    "@syncfusion/ej2-react-base" "~20.2.43"
-
 
 "@testing-library/dom@^8.5.0":
   version "8.17.1"
