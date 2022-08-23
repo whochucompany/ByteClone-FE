@@ -18,7 +18,7 @@ const SignIn = () => {
     const onChangeHandler2 = (e) => {
         setPassword(e.target.value);
     }
-/* 
+
     const sendLoginInformation = async (e) => {
         e.preventDefault();
         
@@ -31,7 +31,7 @@ const SignIn = () => {
         console.log("response",response.headers)
         localStorage.setItem("Authorization",response.headers.authorization)
         localStorage.setItem("View","member")
-        localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
+        //localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
 
         if ( email === "" && password ==="") {
             alert("아이디와 비밀번호를 입력해주세요.")
@@ -44,7 +44,7 @@ const SignIn = () => {
             navigate("/")
         }
     }    
- */
+
 
     return (
         <StSignInWrap>
@@ -61,7 +61,7 @@ const SignIn = () => {
                 placeholder='비밀번호를 입력하세요.'
             />
             <StSignInButton
-                /* onClick={sendLoginInformation} */
+                onClick = {sendLoginInformation}
             >이메일로 로그인하기</StSignInButton>
 
             <StUnderbarBox/>

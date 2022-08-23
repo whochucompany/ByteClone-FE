@@ -41,7 +41,7 @@ const SignUp = () => {
             setEmail("")
             return
         }
-        if (doubleCheck===false){
+        if (doubleCheck===true){
             alert("이메일 중복검사를 해주시기 바랍니다.")
             return
         }
@@ -63,7 +63,7 @@ const SignUp = () => {
             setPasswordConfirm("")
             return
         }else{
-        const response = await axios.post("http://54.180.106.214/user/signup",{ //회원가입
+        const response = await axios.post("http://15.164.170.89/user/signup",{ //회원가입
             email,
             username : name,
             password,

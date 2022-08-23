@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/img/logo.png';
 import Layout from './Layout';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
@@ -24,7 +24,7 @@ const Header = () => {
                 <div>
                     <ul>
                         <li>About</li>
-                        <li>DAILY BYTE</li>
+                        <li> <Link to="/news/DAILY_BYTE"> DAILY BYTE</Link></li>
                         <li>DEEP BYTE</li>
                         <li>마켓인사이드</li>
                         <li>상식한입</li>
@@ -48,7 +48,8 @@ export default Header;
 
 const Navigator = styled.div`
     width: 100%;
-    background-color: ${(props) => props.theme.lightmode.color_white};
+    background-color: rgba(255, 255, 255, .7);
+    backdrop-filter: saturate(180%) blur(20px);
     padding: 24px 0 ;
 `
 
@@ -98,8 +99,12 @@ const StHeader = styled.div`
                 letter-spacing: .5px;
                 transition: all .3s;
                 padding: 4px 0;
-                &:hover{
+                >a{
+                    text-decoration: none;
+                    color: #000C2D;
+                    &:hover{
                     color:  ${(props) => props.theme.lightmode.color_brand};
+                }
                 }
              }
              li:nth-last-of-type(1),li:nth-last-of-type(2) {
