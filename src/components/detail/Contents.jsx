@@ -5,33 +5,59 @@ import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebookF, faLinkedin, faPinterest } from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons"
-import{faLink}from"@fortawesome/free-solid-svg-icons"
+import {faLink}from"@fortawesome/free-solid-svg-icons"
 import { useParams } from "react-router-dom";
+import {useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { __getPost } from '../../redux/modules/post';
+
 
 const Contents = () => {
     const { newsId } = useParams();
     const[newsData, setNewsData] = useState([]);
     const [create, setCreate] = useState(''); // 날짜
     const [viewmode, setViewMode] = useState(''); // 유료, 무료
-    console.log(newsData)
     const viewState = localStorage.getItem('View')
+    const loginUserNickname = localStorage.getItem('username')
     const {register, handleSubmit, formState:{errors}} = useForm();
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const getPosts = async() =>{
         try{
             const response  = await axios.get(`http://15.164.170.89/api/news/detail/${newsId}`)
             setNewsData(response.data)
             setCreate(response.data.createdAt.substring(0, 10))
-            //const allNewsData = response.data
-            console.log(response.data.createdAt)
         } catch(error){
             console.log(error)
         }
     }
 
     useEffect(()=>{
+        dispatch(__getPost(newsId));
         getPosts();
     },[])
 
+    const DeletePost = async() => {
+        try{
+            let answer = window.confirm("기사를 삭제합니까?");
+            if(!answer) return;
+            const Authorization = localStorage.getItem('Authorization');
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `${Authorization}`,
+              }
+            await axios.delete(`http://15.164.170.89/api/news/${newsId}`,{headers: headers})
+            navigate("/")
+            
+        }catch(error){
+            console.log(error)
+        }
+    }
+
+    const ModifyPost = ()=>{
+        navigate(`/modify/${newsId}`)
+    }
     
     const onSubmit =() =>{
         alert("이메일을 발송했습니다. (기능구현x)")
@@ -90,6 +116,10 @@ const Contents = () => {
                     {/* 맴버 */}
                 </div>
                 }
+                <div className='modify' >
+                    <ModifyP loginUserNickname={loginUserNickname} postname ={newsData.username} onClick={ModifyPost}>수정하기</ModifyP>
+                    <ModifyP loginUserNickname={loginUserNickname} postname ={newsData.username} onClick={DeletePost}>삭제하게</ModifyP>
+                </div>
         </DetailDiv>
         </>
     );
@@ -182,7 +212,22 @@ margin: 0 auto;
             }
         }
     }
+    .modify {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 20px;
+        
+    }
     
+`
+const ModifyP = styled.div`
+            display: ${props => `${props.postname}` === `${props.loginUserNickname}` ? `block` : `none`};
+            transition: all .3s;
+            margin-left: 15px;
+            cursor: pointer;
+            &:hover{
+                color: #04a6d7;
+            }
 `
 
 const NewImageDiv = styled.div`

@@ -10,6 +10,7 @@ import CompanyPage from '../pages/CompanyPage'
 import BrandPage from '../pages/BrandPage'
 import DetailPage from '../pages/DetailPage'
 import CreatePage from '../pages/CreatePage'
+import ModifyPage from '../pages/ModifyPage'
 import SignUpPage from '../pages/SignUpPage'
 import NotfindPage from '../pages/NotfindPage'
 
@@ -30,6 +31,7 @@ import NotfindPage from '../pages/NotfindPage'
                 <Route path='/news/brand' element={<BrandPage/>}/>
                 <Route path='/detail/:newsId' element={<DetailPage/>}/>
                 <Route path='/create' element={<CreatePage/>}/>
+                <Route path='/modify/:newsId' element={<ModifyPage/>}/>
                 <Route path='/signup' element={<SignUpPage/>}/>
                 <Route path='*' element={<NotfindPage/>}/>
             </Routes>

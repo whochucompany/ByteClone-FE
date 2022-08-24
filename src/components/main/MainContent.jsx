@@ -6,7 +6,6 @@ import styled from 'styled-components';
 const MainContent = ({id, title, username, view, image, createdAt, category}) => {
     const navigate = useNavigate();
     const onClickHandler = () => {
-        console.log("clicked");
         navigate(`/detail/${id}`);
     }
     const [viewmode, setViewMode] = useState('');
@@ -19,7 +18,6 @@ const MainContent = ({id, title, username, view, image, createdAt, category}) =>
         }
         setCreate(createdAt.substring(0, 10))
     },[])
-    console.log(create)
     const imgUrl = image;
     return (
         <Carddiv onClick={onClickHandler}>

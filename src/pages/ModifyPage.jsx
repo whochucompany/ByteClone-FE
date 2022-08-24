@@ -1,19 +1,18 @@
 import React from 'react';
 import Layout from '../components/common/Layout';
 import Header from '../components/common/Header';
-import Create from '../components/create/Create';
 import Footer from '../components/common/Footer';
-
-const CreatePage = () => {
+import Modify from '../components/create/Modify';
+const ModifyPage = () => {
     return (
         <div>
             <Header/>
                 <Layout>
-                    <Create/>
+                    <Modify/>
                 </Layout>
             <Footer/>
         </div>
     );
 };
 
-export default CreatePage;
+export default ModifyPage;

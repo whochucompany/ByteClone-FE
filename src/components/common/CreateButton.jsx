@@ -8,7 +8,7 @@ const CreateButton = () => {
 
     return (
         <>
-        {view === !'guest' ? 
+        {view === 'member' ? 
         <CreateButtonBtn>
             <Link to = "/create">
                 <FontAwesomeIcon icon={faCirclePlus}/>
@@ -35,8 +35,14 @@ const CreateButtonBtn = styled.button`
     a{
         color:  ${(props) => props.theme.lightmode.color_brand};
         transition: all .3s;
+        svg{
+            transition: all .3s ease-in;
+        }
         &:hover{
             color: #000;
+            svg{
+                transform: rotate(180deg);
+            }
         }
     }
 `

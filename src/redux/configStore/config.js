@@ -4,7 +4,7 @@ import comment from '../modules/comment'
 import login from '../modules/login'
 
     const store = configureStore({
-        reducer: { post, comment, login }
+        reducer: { post /* comment */, login }
     });
 
     export default store;

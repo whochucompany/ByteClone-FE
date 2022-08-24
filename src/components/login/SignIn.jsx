@@ -23,12 +23,12 @@ const SignIn = () => {
         e.preventDefault();
         
     
-        const response = await axios.post("http://54.180.106.214/user/login",{
-            email: email, 
+        const response = await axios.post("http://15.164.170.89/user/login",{
+            email: email,
             password: password,
         }
         ,{withCredentials:true})
-        console.log("response",response.headers)
+        console.log("response",response)
         localStorage.setItem("Authorization",response.headers.authorization)
          //localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
 
@@ -42,6 +42,7 @@ const SignIn = () => {
             alert("로그인 성공!")
             navigate("/")
             localStorage.setItem("View","member")
+            localStorage.setItem("username",response.data.username)
         }
     }    
  

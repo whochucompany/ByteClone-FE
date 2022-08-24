@@ -2,25 +2,42 @@ import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import { useForm } from "react-hook-form";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const Create = () => {
+const Modify = () => {
+    const news = useSelector((state) => state.post.posts);
+    const { newsId } = useParams();
     const [files, setFiles] = useState(''); // 파일 프리뷰 state 작성 
     const [category, setcategory] = useState('') // 카테고리
     const [view, setview] = useState('') // 공개 범위
     const [img, setImg] = useState('') // 사진
+    const [inputTitle, setInputTitle] = useState(news.title) // 타이틀
     const { register, handleSubmit, formState: { errors }, watch, getValues } = useForm();
-    const loginstate = localStorage.getItem('username')
-    const navigate = useNavigate();
+    console.log(inputTitle)
     const content = useRef()
+    const navigate = useNavigate();
+
+    const onChangeHandler = (e) => {
+        const value = e.target.value;
+        setInputTitle(value);
+      };
+    
+
     const handleClickCtateGory = (e) =>{
        setcategory(e.target.value)
     }
     const handleClickView = (e) =>{
         setview(e.target.value)
      }
+
+    //----기존 데이터 가져오기
+    
+
+    //---
+    //---- 셀렉트 박스 
     const categoryMap = [
         {name: "DAILY_BYTE", label: "DAILY BYTE"},
         {name: "DEEP_BYTE", label: "DEEP BYTE"},
@@ -34,12 +51,14 @@ const Create = () => {
         {name: "guest", label: "게스트 회원"},
         {name: "member", label: "맴버 회원"}
     ]
+    //----
 
     useEffect(() => {
         preview();
         return () => preview();
     });
 
+  
     const onLoadFile = (e) => {
         setFiles(e.target.files[0]);
         setImg(e.target.files[0])
@@ -78,18 +97,16 @@ const Create = () => {
           }
 
         try{
-            //const Refreshtoken = localStorage.getItem('refreshToken');
             const Authorization = localStorage.getItem('Authorization');
             const headers = {
                 'Content-Type': 'application/json',
                 Authorization: `${Authorization}`,
-                //Refreshtoken: `${Refreshtoken}`
             }
             await axios
-            .post(
-                'http://15.164.170.89/api/news', formData,  {headers: headers} 
+            .put(
+                `http://15.164.170.89/api/news/${newsId}`, formData,  {headers: headers} 
             )
-            navigate("/")
+            navigate(-1)
         } catch(error){
             console.log(error)
         }
@@ -98,7 +115,7 @@ const Create = () => {
         <Createform onSubmit={handleSubmit(onSubmit, watch)} id="form">
             <div>
                 <h2>기사 타이틀</h2>
-                <input type="text" id='title' name='title' placeholder='기사 제목을 입력해주시요.'
+                <input type="text" id='title' name='title' placeholder='기사 제목을 입력해주시요.'  value={inputTitle}  onChange={onChangeHandler}
                 {...register("title", {required:true, maxLength: 30, })}
                 />
                 {errors.title && errors.title.type === "maxLength" && <p>제목이 깁니다.</p>}
@@ -165,7 +182,7 @@ const Create = () => {
     );
 };
 
-export default Create;
+export default Modify;
 
 const Createform = styled.form`
     width: 1000px;

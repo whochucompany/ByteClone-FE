@@ -22,7 +22,6 @@ const MainContentList = () => {
         getPosts();
     },[])
 
-    console.log(allnewsData)
 
     const newsData = allnewsData && allnewsData.map((news) => 
         (
@@ -38,8 +37,6 @@ const MainContentList = () => {
         />
         ))
 
-    console.log(newsData)
-    
     return (
         <Layout>
             <CardListDiv>
