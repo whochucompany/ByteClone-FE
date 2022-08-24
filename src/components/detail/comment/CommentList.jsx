@@ -1,11 +1,15 @@
 import React from 'react';
+import Comment from "./Comment";
 import styled from 'styled-components';
 
 
-const CommentList = () => {
+const CommentList = ({ comment }) => {
+
+    
+
     return (
         <CommentListWrap>
-            
+            <Comment key={comment.id} comment={comment.comment} id = {comment.id} day = {comment.commentList.createAt}></Comment>
         </CommentListWrap>
     );
 };

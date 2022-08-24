@@ -36,7 +36,7 @@ const Header = () => {
                         <li> <Link to="/news/company"> 기업한입</Link></li>
                         <li> <Link to="/news/brand"> 브랜드한입</Link></li>
                         <li> <Link to="/1"> Shop</Link></li>
-                        <li> <Link to="/login"> 로그인</Link></li>
+                        <li> <Logout/> </li>
                         <li> <Link to="/1"> 유료 구독하기</Link></li>
                         <li> <Link to="/1"> 무료 뉴스레터 구독</Link></li>
 
