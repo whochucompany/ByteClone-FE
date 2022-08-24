@@ -7,22 +7,20 @@ import styled from 'styled-components';
 
 const CommentView = () => {
 
-    const [commentData, setCommentData] = useState(null);
+    const [commentData, setCommentData] = useState("");
     const navigate = useNavigate();
     const { newsId } = useParams();
     
-    var auth = localStorage.getItem("Authorization")
-    var token = localStorage.getItem("Refresh-Token")
+    
     // 나중에 토큰이름 확인 
     const getData = async () => {
        
+
     try {
         // const response  = await axios.get(`http://15.164.170.89/api/news/detail/${newsId}`)
         const response  = await axios.get(`http://15.164.170.89/api/news/detail/${2}`)
-        
-        
         setCommentData(response.data.commentList)
-        console.log(commentData)
+        
     } catch(error){
         console.log("CommentViewGetData :", error)
     }

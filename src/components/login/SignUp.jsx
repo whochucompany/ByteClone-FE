@@ -41,7 +41,7 @@ const SignUp = () => {
             setEmail("")
             return
         }
-        if (doubleCheck===true){
+        if (doubleCheck===false){
             alert("이메일 중복검사를 해주시기 바랍니다.")
             return
         }
@@ -71,7 +71,7 @@ const SignUp = () => {
         }
         ,{withCredentials:true})
         localStorage.setItem("Authorization",response.data.Authorization)
-        // localStorage.setItem("Refresh-Token",response.data.["Refresh-Token"])
+        localStorage.setItem("Refresh-Token",response.data["Refresh-Token"])
 
         alert("회원가입에 성공하셨습니다!")
         navigate("/login")
@@ -82,7 +82,7 @@ const SignUp = () => {
     
         e.preventDefault()
 
-        const response = await axios.get(`/user/emailCheck/${email}`, {
+        const response = await axios.get(`http://15.164.170.89/user/emailCheck/${email}`, {
             body : {
                  email : email 
             },
@@ -92,7 +92,7 @@ const SignUp = () => {
     if (email === ""){
         alert("email를 입력해주세요.")
          return }
-    if (response.result === false) {
+    if (response.result === true) {
         alert("중복된 아이디 입니다.")
         setEmail("")
         return

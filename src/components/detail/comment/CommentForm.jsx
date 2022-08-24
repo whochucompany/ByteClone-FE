@@ -10,7 +10,7 @@ const CommentForm = ({ comment }) => {
     const onCreateComment = (e) => {
         e.preventDefault();
         console.log(comment)
-        console.log(comment[0].id)
+        // console.log(comment[0].id)
     }
     
     return (
