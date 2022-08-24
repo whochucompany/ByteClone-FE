@@ -1,44 +1,60 @@
-import React from 'react';
-import db from '../../server/db.json'
-import { useDispatch, useSelector } from 'react-redux';
-import { useForm } from "react-hook-form";
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
+import { useForm } from "react-hook-form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faFacebookF, faLinkedin, faPinterest } from "@fortawesome/free-brands-svg-icons";
 import {faEnvelope} from "@fortawesome/free-regular-svg-icons"
 import{faLink}from"@fortawesome/free-solid-svg-icons"
+import { useParams } from "react-router-dom";
 
 const Contents = () => {
-    const post = {...db.post[0]}
-    const {id, title, imageUrl, content, createdAt, view, username, category} = post
-    console.log(post)
-    console.log(id)
-    const viewState = localStorage.getItem('view')
+    const { newsId } = useParams();
+    const[newsData, setNewsData] = useState([]);
+    const [create, setCreate] = useState(''); // 날짜
+    const [viewmode, setViewMode] = useState(''); // 유료, 무료
+    console.log(newsData)
+    const viewState = localStorage.getItem('View')
     const {register, handleSubmit, formState:{errors}} = useForm();
+    const getPosts = async() =>{
+        try{
+            const response  = await axios.get(`http://15.164.170.89/api/news/detail/${newsId}`)
+            setNewsData(response.data)
+            setCreate(response.data.createdAt.substring(0, 10))
+            //const allNewsData = response.data
+            //console.log(response.data.createdAt)
+        } catch(error){
+            console.log(error)
+        }
+    }
 
+    useEffect(()=>{
+        getPosts();
+    },[])
 
+    
     const onSubmit =() =>{
         alert("이메일을 발송했습니다. (기능구현x)")
     }
     return (
         <>
         <NewImageDiv>
-                <img src={post.imageUrl} alt="" />
+                <img src={newsData.image} alt="" />
                 <div className='new_info'>
-                <h1 className='title'>{title}</h1>
+                <h1 className='title'>{newsData.title}</h1>
                 <div>
-                    <p>{username}</p>
-                    <p>{createdAt}</p>
+                    <p>{newsData.username}</p>
+                    <p>{create}</p>
                     <p>댓글 남기기</p>
                 </div>
             </div>
         </NewImageDiv>
         <DetailDiv>
             <div className='content'>
-                {content}
+                {newsData.content}
             </div>
             <div className='category'>
-                <span>{category}</span>
+                <span>{newsData.category}</span>
             </div>
             <div className='sns'>
                 {/* sns */}

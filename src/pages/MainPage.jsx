@@ -1,4 +1,5 @@
 import React from 'react';
+import CreateButton from '../components/common/CreateButton';
 import Footer from '../components/common/Footer';
 import Header from '../components/common/Header';
 import Layout from '../components/common/Layout';
@@ -13,6 +14,7 @@ const MainPage = () => {
                <MainBanner/>
                <MainBoard/>
             <Footer/>
+            <CreateButton/>
         </div>
     );
 };

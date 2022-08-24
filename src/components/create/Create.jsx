@@ -21,10 +21,10 @@ const Create = () => {
     const categoryMap = [
         {name: "DAILY_BYTE", label: "DAILY BYTE"},
         {name: "DEEP_BYTE", label: "DEEP BYTE"},
-        {name: "마켓인사이드", label: "마켓인사이드"},
-        {name: "상식한입", label: "상식한입"},
-        {name: "기업한입", label: "기업한입"},
-        {name: "브랜드한입", label: "브랜드한입"}
+        {name: "marketinside", label: "마켓인사이드"},
+        {name: "concept", label: "상식한입"},
+        {name: "company", label: "기업한입"},
+        {name: "brand", label: "브랜드한입"}
     ]
 
     const viewMap = [

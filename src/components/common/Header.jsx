@@ -23,17 +23,17 @@ const Header = () => {
                 </div>
                 <div>
                     <ul>
-                        <li>About</li>
+                        <li> <Link to="/1"> About</Link></li>
                         <li> <Link to="/news/DAILY_BYTE"> DAILY BYTE</Link></li>
-                        <li>DEEP BYTE</li>
-                        <li>마켓인사이드</li>
-                        <li>상식한입</li>
-                        <li>기업한입</li>
-                        <li>브랜드한입</li>
-                        <li>Shop</li>
-                        <li>로그인</li>
-                        <li>유료 구독하기</li>
-                        <li>무료 뉴스레터 구독</li>
+                        <li> <Link to="/news/DEEP_BYTE"> DEEP BYTE</Link></li>
+                        <li> <Link to="/news/marketinside"> 마켓인사이드</Link></li>
+                        <li> <Link to="/news/concept"> 상식한입</Link></li>
+                        <li> <Link to="/news/company"> 기업한입</Link></li>
+                        <li> <Link to="/news/brand"> 브랜드한입</Link></li>
+                        <li> <Link to="/1"> Shop</Link></li>
+                        <li> <Link to="/login"> 로그인</Link></li>
+                        <li> <Link to="/1"> 유료 구독하기</Link></li>
+                        <li> <Link to="/1"> 무료 뉴스레터 구독</Link></li>
                         <li><FontAwesomeIcon icon={faMoon} /></li>
                         <li><FontAwesomeIcon icon={faMagnifyingGlass} /></li>
                     </ul>
@@ -76,6 +76,13 @@ const StHeader = styled.div`
                 padding:0 16px;
                 line-height: 24px;
                 border-radius: 20px;
+                transition: all .3s;
+                a{
+                    color: #fff;
+                    &:hover{
+                        color: #fff;
+                    }
+                }
                 &:hover{
                     background-color:  ${(props) => props.theme.lightmode.color_dark};
                     color: #fff;
@@ -87,6 +94,13 @@ const StHeader = styled.div`
                 padding:0 16px;
                 line-height: 24px;
                 border-radius: 20px;
+                transition: all .3s;
+                a{
+                    color: #fff;
+                    &:hover{
+                        color: #fff;
+                    }
+                }
                 &:hover{
                     background-color:  ${(props) => props.theme.lightmode.color_dark};
                     color: #fff;
@@ -97,11 +111,11 @@ const StHeader = styled.div`
                 font-weight: 500;
                 white-space: nowrap;
                 letter-spacing: .5px;
-                transition: all .3s;
                 padding: 4px 0;
                 >a{
                     text-decoration: none;
                     color: #000C2D;
+                    transition: all .3s;
                     &:hover{
                     color:  ${(props) => props.theme.lightmode.color_brand};
                 }
