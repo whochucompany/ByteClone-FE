@@ -120,10 +120,8 @@ const Carddiv =styled.div`
             border-bottom: 1px solid transparent;
             transition: all 250ms ease-in-out;
             &:hover{
-                a{
                 border-color:#04a6d7 ;
-                }
-            }
+              }
             }
             
         }
