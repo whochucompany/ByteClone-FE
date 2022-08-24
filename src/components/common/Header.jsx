@@ -2,18 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import logo from '../../assets/img/logo.png';
 import Layout from './Layout';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
+import Logout from '../login/Logout';
+
 
 
 
 const Header = () => {
+
     const navigate = useNavigate();
     const onClickHandler = () => {
         navigate("/");
       };
+
     return (
         <Navigator>
             <Layout>
@@ -31,7 +35,9 @@ const Header = () => {
                         <li>기업한입</li>
                         <li>브랜드한입</li>
                         <li>Shop</li>
-                        <li>로그인</li>
+                        <li><Logout/></li>
+
+                        
                         <li>유료 구독하기</li>
                         <li>무료 뉴스레터 구독</li>
                         <li><FontAwesomeIcon icon={faMoon} /></li>
@@ -43,6 +49,7 @@ const Header = () => {
         </Navigator>
     );
 };
+
 
 export default Header;
 
