@@ -30,7 +30,6 @@ const SignIn = () => {
         ,{withCredentials:true})
         console.log("response",response.headers)
         localStorage.setItem("Authorization",response.headers.authorization)
-        localStorage.setItem("View","member")
         //localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
 
         if ( email === "" && password ==="") {
@@ -42,6 +41,7 @@ const SignIn = () => {
         else{
             alert("로그인 성공!")
             navigate("/")
+            localStorage.setItem("View","member")
         }
     }    
 
@@ -56,6 +56,7 @@ const SignIn = () => {
             />
 
             <StSignInPasswordBox
+                type= 'password'
                 value = {password}
                 onChange = {onChangeHandler2}
                 placeholder='비밀번호를 입력하세요.'
@@ -151,12 +152,13 @@ const StSignInButton = styled.button`
 
     border-radius: 4px;
     border : 0px;
-
+    
     background-color : black;
 
     font-size : 13px;
     font-weight : bold;
     color : white;
+    cursor: pointer;
 `   
 const StUnderbarBox = styled.div`
     height : 40px;
