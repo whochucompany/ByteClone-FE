@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import DailyByte from './inner/DailyByte';
+import DeepByte from './inner/DeepByte';
+import Marketinside from './inner/Marketinside';
+import Concept from './inner/Concept';
+import Company from './inner/Company';
+import Brand from './inner/Brand';
 
 const ContentTop = ({category}) => {
     const [topContent, setTopContent] = useState('');
@@ -30,7 +35,18 @@ const ContentTop = ({category}) => {
     const inner = (category) => {
         if (category === 'DAILY_BYTE'){
             return <DailyByte/>
-        }/* else if (category === 'DAILY_BYTE') */
+        }else if (category === 'DEEP_BYTE'){
+            return <DeepByte/>
+        }else if (category === 'marketinside'){
+            return <Marketinside/>
+        }else if (category === 'concept'){
+            return <Concept/>
+        }else if (category === 'company'){
+            return <Company/>
+        }else if (category === 'brand'){
+            return <Brand/>
+        }
+        
     }
 
     console.log(topContent)

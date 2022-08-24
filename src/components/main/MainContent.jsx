@@ -30,7 +30,7 @@ const MainContent = ({id, title, username, view, image, createdAt, category}) =>
                     <div>
                         <span>{username}</span> <span>{category}</span> <span>{create}</span>
                     </div>
-                    <h2>{title}</h2>
+                    <h2><a href='#'>{title}</a></h2>
                 </div>
             </div>
         </Carddiv>
@@ -56,9 +56,7 @@ const Carddiv =styled.div`
             img{
                 transform: scale(101%);
             }
-            h2{
-                border-color:#04a6d7 ;
-            }
+            
         }
     }
     .card_img{
@@ -116,9 +114,16 @@ const Carddiv =styled.div`
             font-weight: 800;
             font-size: 20px;
             line-height: 28px;
-            transition: all .3s;
+            a{
+            text-decoration: none;
+            color:#000c2d;
             border-bottom: 1px solid transparent;
             transition: all 250ms ease-in-out;
+            &:hover{
+                border-color:#04a6d7 ;
+              }
+            }
+            
         }
     }
 `
