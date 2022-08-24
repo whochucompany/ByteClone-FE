@@ -1110,6 +1110,7 @@
     "ckeditor5" "^35.0.1"
 
 "@ckeditor/ckeditor5-build-classic@^35.0.1":
+
   "integrity" "sha512-CCkUe0kMfcTP5ctPO8VPC6tJFJsQOGeGi+Dw/YhOy02AYOPU/CVXiyGMVaJoF1V3InfuC/DGV2mx0cpNeP9Wvg=="
   "resolved" "https://registry.npmjs.org/@ckeditor/ckeditor5-build-classic/-/ckeditor5-build-classic-35.0.1.tgz"
   "version" "35.0.1"
@@ -2155,6 +2156,7 @@
     "@svgr/core" "^5.5.0"
     "@svgr/plugin-jsx" "^5.5.0"
     "@svgr/plugin-svgo" "^5.5.0"
+
     "loader-utils" "^2.0.0"
 
 "@szmarczak/http-timer@^1.1.2":
@@ -2164,10 +2166,12 @@
   dependencies:
     "defer-to-connect" "^1.0.1"
 
+
 "@testing-library/dom@^8.5.0", "@testing-library/dom@>=7.21.4":
   "integrity" "sha512-KnH2MnJUzmFNPW6RIKfd+zf2Wue8mEKX0M3cpX6aKl5ZXrJM1/c/Pc8c2xDNYQCnJO48Sm5ITbMXgqTr3h4jxQ=="
   "resolved" "https://registry.npmjs.org/@testing-library/dom/-/dom-8.17.1.tgz"
   "version" "8.17.1"
+
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
