@@ -1,11 +1,17 @@
 import React from 'react';
+import styled from 'styled-components';
+
 
 const CommentList = () => {
     return (
-        <div>
+        <CommentListWrap>
             
-        </div>
+        </CommentListWrap>
     );
 };
 
 export default CommentList;
+
+const CommentListWrap = styled.div`
+    background-color : blue; 
+`
