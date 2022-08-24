@@ -1,12 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
+import Layout from '../components/common/Layout';
+import Header from '../components/common/Header';
+import Create from '../components/create/Create';
+import Footer from '../components/common/Footer';
 
-const Create = () => {
+const CreatePage = () => {
     return (
         <div>
-            
+            <Header/>
+                <Layout>
+                    <Create/>
+                </Layout>
+            <Footer/>
         </div>
     );
 };
 
-export default Create;
+export default CreatePage;
