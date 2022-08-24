@@ -1,19 +1,18 @@
 import React from 'react';
-import Layout from '../components/common/Layout';
 import Header from '../components/common/Header';
-import Create from '../components/create/Create';
+import Layout from '../components/common/Layout';
 import Footer from '../components/common/Footer';
-import CreateButton from '../components/common/CreateButton';
-const CreatePage = () => {
+import ContentView from '../components/category/ContentView';
+const DailyBytePage = () => {
     return (
         <div>
             <Header/>
                 <Layout>
-                    <Create/>
+                    <ContentView category='DAILY_BYTE'/>
                 </Layout>
             <Footer/>
         </div>
     );
 };
 
-export default CreatePage;
+export default DailyBytePage;

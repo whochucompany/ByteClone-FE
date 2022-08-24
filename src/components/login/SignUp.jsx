@@ -41,7 +41,7 @@ const SignUp = () => {
             setEmail("")
             return
         }
-        if (doubleCheck===false){
+        if (doubleCheck===true){
             alert("이메일 중복검사를 해주시기 바랍니다.")
             return
         }
@@ -63,7 +63,7 @@ const SignUp = () => {
             setPasswordConfirm("")
             return
         }else{
-        const response = await axios.post("http://54.180.106.214/user/signup",{ //회원가입
+        const response = await axios.post("http://15.164.170.89/user/signup",{ //회원가입
             email,
             username : name,
             password,
@@ -128,12 +128,14 @@ const SignUp = () => {
             />
 
             <StSignUpPasswordBox
+                type= 'password'
                 value={password}
                 onChange={onChangeHandler3}
                 placeholder='비밀번호를 입력하세요.'
             />
 
             <StSignUpPasswordConfirmBox
+                type= 'password'
                 value={passwordConfirm}
                 onChange={onChangeHandler4}
                 placeholder='비밀번호를 재입력하세요.'
@@ -230,7 +232,7 @@ const StSignUpEmailBox = styled.input`
     box-shadow: inset 0 1px rgb(0 0 0 / 8%);
 `
 const StDoubleCheckButtom = styled.button`
-    
+    cursor: pointer;
     width :100%;
     height: 40px;
 
@@ -293,7 +295,7 @@ const StSignUpButton = styled.button`
     border : 0px;
 
     background-color : black;
-
+    cursor: pointer;
     font-size : 13px;
     font-weight : bold;
     color : white;

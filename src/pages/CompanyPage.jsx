@@ -1,19 +1,20 @@
 import React from 'react';
-import Layout from '../components/common/Layout';
 import Header from '../components/common/Header';
-import Create from '../components/create/Create';
+import Layout from '../components/common/Layout';
 import Footer from '../components/common/Footer';
 import CreateButton from '../components/common/CreateButton';
-const CreatePage = () => {
+import ContentView from '../components/category/ContentView';
+const CompanyPage = () => {
     return (
         <div>
             <Header/>
                 <Layout>
-                    <Create/>
+                    <ContentView category='company'/>
                 </Layout>
             <Footer/>
+            <CreateButton/>
         </div>
     );
 };
 
-export default CreatePage;
+export default CompanyPage;

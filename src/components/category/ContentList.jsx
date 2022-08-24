@@ -1,6 +1,6 @@
 import React from 'react';
 
-const GuestPage = () => {
+const ContentList = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const GuestPage = () => {
     );
 };
 
-export default GuestPage;
+export default ContentList;

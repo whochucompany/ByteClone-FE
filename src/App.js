@@ -4,7 +4,7 @@ import GlobalStyle from "./assets/GlobalStyle";
 import './App.css';
 
 function App(create) {
-  localStorage.setItem("view","guest")
+  localStorage.setItem("View","guest")
   return (
     
     <>

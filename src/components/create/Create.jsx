@@ -19,8 +19,8 @@ const Create = () => {
         setview(e.target.value)
      }
     const categoryMap = [
-        {name: "news", label: "DAILY BYTE"},
-        {name: "deepbyte", label: "DEEP BYTE"},
+        {name: "DAILY_BYTE", label: "DAILY BYTE"},
+        {name: "DEEP_BYTE", label: "DEEP BYTE"},
         {name: "marketinside", label: "마켓인사이드"},
         {name: "concept", label: "상식한입"},
         {name: "company", label: "기업한입"},
@@ -56,16 +56,39 @@ const Create = () => {
 
     const onSubmit = async() =>{
         const values = getValues ();
-        values.content = content.current;
-        values.category = `${category}`
-        values.view = `${view}`
-        values.img = img
-        console.log(values)
+        /* values.content = content.current;
+        values.Category = `${category}`
+        values.View = `${view}`
+        values.image = img
         
-        await axios
-        .post(
-            'url',values
-        )
+        console.log(values) */
+        const titleWatch = watch('title')
+        const formData = new FormData()
+        formData.append('title', titleWatch)
+        formData.append('content', content.current)
+        formData.append('Category', category)
+        formData.append('View', view)
+        formData.append('image', img)
+
+        for (let value of formData.values()) {
+            console.log(value);
+          }
+
+        try{
+            //const Refreshtoken = localStorage.getItem('refreshToken');
+            const Authorization = localStorage.getItem('Authorization');
+            const headers = {
+                'Content-Type': 'application/json',
+                Authorization: `${Authorization}`,
+                //Refreshtoken: `${Refreshtoken}`
+            }
+            await axios
+            .post(
+                'http://15.164.170.89/api/news', formData,  {headers: headers} 
+            )
+        } catch(error){
+            console.log(error)
+        }
     }
     return (
         <Createform onSubmit={handleSubmit(onSubmit, watch)} id="form">

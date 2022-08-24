@@ -18,7 +18,7 @@ const SignIn = () => {
     const onChangeHandler2 = (e) => {
         setPassword(e.target.value);
     }
-/* 
+
     const sendLoginInformation = async (e) => {
         e.preventDefault();
         
@@ -30,8 +30,7 @@ const SignIn = () => {
         ,{withCredentials:true})
         console.log("response",response.headers)
         localStorage.setItem("Authorization",response.headers.authorization)
-        localStorage.setItem("View","member")
-        localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
+        //localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
 
         if ( email === "" && password ==="") {
             alert("아이디와 비밀번호를 입력해주세요.")
@@ -42,9 +41,10 @@ const SignIn = () => {
         else{
             alert("로그인 성공!")
             navigate("/")
+            localStorage.setItem("View","member")
         }
     }    
- */
+
 
     return (
         <StSignInWrap>
@@ -56,12 +56,13 @@ const SignIn = () => {
             />
 
             <StSignInPasswordBox
+                type= 'password'
                 value = {password}
                 onChange = {onChangeHandler2}
                 placeholder='비밀번호를 입력하세요.'
             />
             <StSignInButton
-                /* onClick={sendLoginInformation} */
+                onClick = {sendLoginInformation}
             >이메일로 로그인하기</StSignInButton>
 
             <StUnderbarBox/>
@@ -151,12 +152,13 @@ const StSignInButton = styled.button`
 
     border-radius: 4px;
     border : 0px;
-
+    
     background-color : black;
 
     font-size : 13px;
     font-weight : bold;
     color : white;
+    cursor: pointer;
 `   
 const StUnderbarBox = styled.div`
     height : 40px;
