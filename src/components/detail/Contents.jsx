@@ -22,7 +22,7 @@ const Contents = () => {
             setNewsData(response.data)
             setCreate(response.data.createdAt.substring(0, 10))
             //const allNewsData = response.data
-            //console.log(response.data.createdAt)
+            console.log(response.data.createdAt)
         } catch(error){
             console.log(error)
         }
