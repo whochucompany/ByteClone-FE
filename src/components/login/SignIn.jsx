@@ -30,8 +30,8 @@ const SignIn = () => {
         ,{withCredentials:true})
         console.log("response",response)
         localStorage.setItem("Authorization",response.headers.authorization)
-         //localStorage.setItem("Refresh-Token",response.data.data["Refresh-Token"])
-
+        localStorage.setItem("RefreshToken",response.headers.refreshtoken)
+        console.log(response.headers)
         if ( email === "" && password ==="") {
             alert("아이디와 비밀번호를 입력해주세요.")
         }    
