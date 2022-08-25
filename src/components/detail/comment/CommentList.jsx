@@ -4,12 +4,16 @@ import styled from 'styled-components';
 
 
 const CommentList = ({ comment }) => {
-
     
+    console.log(comment)
 
     return (
         <CommentListWrap>
-            <Comment key={comment.id} comment={comment.comment} id = {comment.id} day = {comment.commentList.createAt}></Comment>
+            {comment && comment.map((comments)=> {
+                return(            
+       <Comment key={comments.id} comment={comments.comment} id = {comments.id} />
+            )})
+            };
         </CommentListWrap>
     );
 };

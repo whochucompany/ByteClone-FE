@@ -115,7 +115,7 @@ const Modify = () => {
         <Createform onSubmit={handleSubmit(onSubmit, watch)} id="form">
             <div>
                 <h2>기사 타이틀</h2>
-                <input type="text" id='title' name='title' placeholder='기사 제목을 입력해주시요.'  value={inputTitle}  onChange={onChangeHandler}
+                <input type="text" id='title' name='title' placeholder='기사 제목을 입력해주시요.' 
                 {...register("title", {required:true, maxLength: 30, })}
                 />
                 {errors.title && errors.title.type === "maxLength" && <p>제목이 깁니다.</p>}
